@@ -1,6 +1,7 @@
 #!/bin/bash
 
-for i in {350..366} ; do
+for i in {301..349} ; do
   mkdir ./${i}
   touch ./${i}/B.rb
+  touch ./${i}/C.rb
 done
