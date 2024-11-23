@@ -1,33 +1,102 @@
-N = gets.to_i
-numbers = gets.chomp.split(' ').map(&:to_i)
+H, W = gets.chomp.split(' ').map(&:to_i)
+strs = []
+H.times do
+  strs << gets.chomp.split('')
+end
 
-while true
-  count = 0
-  numbers.each_with_index do |n, i|
-    if n != numbers.length - 1 && (n - numbers[i + 1]).abs == 1
-      count += 1
-    end
-  end
-  break if count == numbers.length - 1
+EX = 'snuke'
 
-  for i in 0...(numbers.length - 1) do
-    if (numbers[i] - numbers[i + 1]).abs != 0
-      big = [numbers[i], numbers[i + 1]].max
-      small = [numbers[i], numbers[i + 1]].min
-      arr = ((small + 1)..(big - 1)).map { |a| a }
+result = []
 
-      if numbers[i] == big
-        arr.each do |a|
-          numbers.insert(i + 1, a)
-        end
-      else
-        arr.reverse.each do |a|
-          numbers.insert(i + 1, a)
-        end
+# 縦
+strs.each_with_index do |str, i|
+  if H - i >= 5
+    for j in 0...W do
+      tmp = []
+      5.times do |k|
+        tmp.push(strs[i + k][j])
       end
-      break
+      if tmp.join == EX
+        5.times do |u|
+          result << [i + 1 + u, j + 1]
+        end
+      elsif tmp.reverse.join == EX
+        5.times do |u|
+          result << [i + 1 + u, j + 1]
+        end
+        result.reverse!
+      end
     end
   end
 end
 
-p numbers
+# 横
+strs.each_with_index do |str, i|
+  str.each_with_index do |s, j|
+    if W - 1 - j >= 4
+      tmp = str.slice(j..(j + 4))
+      if tmp.join == EX
+        5.times do |k|
+          result << [i + 1, j + k + 1]
+        end
+      elsif tmp.reverse.join == EX
+        5.times do |k|
+          result << [i + 1, j + k + 1]
+        end
+        result.reverse!
+      end
+    end
+  end
+end
+
+# 右下
+strs.each_with_index do |str, i|
+  if H - i >= 5
+    str.each_with_index do |s, j|
+      if W - j >= 5
+        tmp = []
+        5.times do |k|
+          tmp << strs[i + k][j + k]
+        end
+        if tmp.join == EX
+          5.times do |m|
+            result << [i + m + 1, j + m + 1]
+          end
+        elsif tmp.reverse.join == EX
+          5.times do |m|
+            result << [i + m + 1, j + m + 1]
+          end
+          result.reverse!
+        end
+      end
+    end
+  end
+end
+
+# 左下
+strs.each_with_index do |str, i|
+  if H - i >= 5
+    str.each_with_index do |s, j|
+      if j >= 4
+        tmp = []
+        5.times do |k|
+          tmp << strs[i + k][j - k]
+        end
+        if tmp.join == EX
+          5.times do |m|
+            result << [i + m + 1, j - m + 1]
+          end
+        elsif tmp.reverse.join == EX
+          5.times do |m|
+            result << [i + m + 1, j - m + 1]
+          end
+          result.reverse!
+        end
+      end
+    end
+  end
+end
+
+result.each do |r|
+  puts r.join(' ')
+end
