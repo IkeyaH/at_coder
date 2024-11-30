@@ -15,5 +15,5 @@ end
 if result.length == 1
   puts result[0]
 else
-  puts -1
+  puts '-1'
 end
