@@ -12,3 +12,13 @@ dir = {
   'U' => [-1, 0],
   'D' => [1,0]
 }
+
+# popcount（2新数にした際、1がいつくあるかカウントする）
+def popcount_kernighan(num)
+  count = 0
+  while num > 0
+    num &= (num - 1)
+    count += 1
+  end
+  count
+end
