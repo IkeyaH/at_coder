@@ -3,7 +3,6 @@ foods = gets.split.map(&:to_i)
 a_arr = gets.split.map(&:to_i)
 b_arr = gets.split.map(&:to_i)
 
-
 ans = 0
 for x in 0...(10**7) do
   r = Array.new(N)
