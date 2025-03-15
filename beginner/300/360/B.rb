@@ -1,55 +1,22 @@
-# s,t = gets.chomp.split(' ')
-# s_arr = s.split('')
+S, T = gets.chomp.split(' ')
 
-# kugiri = s_arr.length - 1
-# kugiri_times = kugiri
+# 何文字に分割するか、でループし、
+# その中で何文字目をみるか、で再度ループすれば良い
+len = S.length
+ok = false
 
-# result_arr = []
-
-# kugiri_times.times do
-#   tmp = []
-#   stop_flag = false
-#   kugiri_ichi = kugiri - 1
-
-#   while !stop_flag
-#     if kugiri_ichi.between?(0, s_arr.length - 1)
-#       tmp << s_arr[kugiri_ichi]
-#       kugiri_ichi += kugiri
-#     else
-#       stop_flag = true
-#     end
-#   end
-#   result_arr << tmp.join
-#   kugiri = kugiri - 1
-#   break if tmp.length > t.length
-# end
-
-# if result_arr.include?(t)
-#   puts 'Yes'
-# else
-#   puts 'No'
-# end
-
-s,t = gets.chomp.split(' ')
-s_arr = s.split('')
-
-result_arr = []
-kugiri_num = 1
-
-for i in 1...(s_arr.length - 1) do
-  kugiri_index = i - 1
-  tmp = s.length / kugiri_num
-  result = []
-  break if tmp == 1 && s.length % kugiri_num == 0
-  tmp.times do
-    result << s_arr[kugiri_index]
-    kugiri_index += i
+for i in 1...len do
+  for j in 1..i do
+    ind = j - 1
+    arr = []
+    while true
+      arr << S[ind]
+      ind += i
+      break if ind >= len
+    end
+    ok = true if arr.join == T
   end
-  result_arr << result.join
+  break if ok
 end
 
-if result_arr.include?(t)
-  puts 'Yes'
-else
-  puts 'No'
-end
+puts ok ? 'Yes' : 'No'
