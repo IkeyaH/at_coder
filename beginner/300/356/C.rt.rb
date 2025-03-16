@@ -21,7 +21,7 @@ r = []
 M.times do |i|
   arr = gets.chomp.split(' ')
   r << arr[-1]
-  ta = arr[1...(arr[0].to_i)]
+  ta = arr[1..(arr[0].to_i)]
   ta.each do |a_|
     a = a_.to_i - 1
     as[i] |= 1 << a
