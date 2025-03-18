@@ -11,7 +11,6 @@ def popcount_kernighan(num)
   count
 end
 
-
 M.times do |i|
   tarr = gets.chomp.split
   r << tarr[-1]
