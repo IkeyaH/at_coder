@@ -1,12 +1,14 @@
-N, R, C = gets.split.map(&:to_i)
-strs = gets.chomp
+# 焚き火を動かす、という発想
 
+N, R, C = gets.split.map(&:to_i)
+S = gets.chomp
+
+r, c = 0, 0 # 焚き火の位置を保存する
 smokes = Set.new
-smokes.add([0,0])
-r, c = 0, 0
+smokes.add([r, c])
 ans = []
 
-strs.each_char do |s|
+S.each_char do |s|
   case s
   when 'N'
     r += 1
@@ -18,14 +20,13 @@ strs.each_char do |s|
     c -= 1
   end
 
-  smokes.add([r, c])
+  smokes.add([r,c])
   tr = r + R
   tc = c + C
-  if smokes.include?([tr, tc])
-    ans << 1
-  else
+
+  smokes.include?([tr, tc]) ?
+    ans << 1 :
     ans << 0
-  end
 end
 
 puts ans.join
