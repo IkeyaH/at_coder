@@ -22,3 +22,8 @@ def popcount_kernighan(num)
   end
   count
 end
+
+# string.slice(4,5)
+# index 4から5文字slice
+# string[4,5]と同じ
+# 最初から範囲を超えているとnil, 一部含まれているとある分だけ出力される
