@@ -1,4 +1,3 @@
-# すべての点に対して、1度確認すればOKなコードにする
 H, W, D = gets.chomp.split(' ').map(&:to_i)
 grid = []
 H.times do
@@ -11,8 +10,6 @@ for i in 0...H do
   for j in 0...W do
     target_1 = grid[i][j]
     next if target_1 != '.'
-
-
 
     count = 0
     for k in 0...H do
