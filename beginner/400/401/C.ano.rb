@@ -11,7 +11,7 @@ if n < k
 end
 
 s = k
-(k+1).upto(n).each do |i|
+(k+1).upto(n).each do |i| # todo: eachはなくても良い、ちゃんと調べる
   s -= a[i-1-k]
   s += a[i-1]
   s = s % t
