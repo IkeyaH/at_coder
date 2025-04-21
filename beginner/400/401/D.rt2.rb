@@ -19,7 +19,7 @@ end
 
 s_dup = s.dup
 N.times do |i|
-  if s_dup[i] == '?' 
+  if s_dup[i] == '?'
     if i == 0
       s_dup[i] = 'o'
     else
