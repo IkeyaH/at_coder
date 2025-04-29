@@ -1,5 +1,3 @@
-# todo
-
 N = gets.to_i
 
 def calc(h, n)
