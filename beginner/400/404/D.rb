@@ -1,34 +1,27 @@
-# TLE
+# 公式解説動画も良いが、こちらのが素直な実装な気がする
+# あと、rubyに寄った感じだからそう実装する、というのもあるかもしれない
 N, M = gets.split.map(&:to_i)
-C = gets.split.map(&:to_i) # 入園料
-A = Array.new(M) { Array.new } # 動物がどの動物園にいるか
-
+C = gets.split.map(&:to_i)
+ZOO = Array.new(N) { Array.new }
 M.times do |i|
-  inp = gets.split.map(&:to_i)
-  k = inp[0] # 動物iが幾つの動物園にいるか
-  arr = inp[1..k] # 動物と動物園の対応配列
-  f_arr = arr.map { |a| a -= 1 }
-  A[i] = f_arr
+  _, *a = gets.split.map(&:to_i)
+  a.each { |z| ZOO[z-1] << i }
 end
 
-p3 = Array.new(N+1, 1)
-N.times { |i| p3[i+1] = p3[i]*3 }
-
 ans = Float::INFINITY
-p3[N].times do |s|
-  t = Array.new(N)
-  N.times { |i| t[i] = s/p3[i]%3 }
+
+(3**N).times do |i|
   cost = 0
-  N.times { |i| cost += t[i]*C[i] }
-  M.times do |j|
-    cnt = 0
-    ta = A[j]
-    ta.each do |a|
-      cnt += t[a]
-    end
-    cost = Float::INFINITY if cnt < 2
+  animals = Array.new(M, 0)
+  tri = i.digits(3) # すごい便利
+  tri.each_with_index do |tr, j|
+    next if tr == 0
+    cost += C[j]*tr
+    zoo = ZOO[j]
+    zoo.each { |a| animals[a] += tr }
   end
-  ans = [cost, ans].min
+  next if animals.any? { _1 < 2 } || cost >= ans
+  ans = cost
 end
 
 puts ans
