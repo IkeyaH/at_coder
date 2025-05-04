@@ -1,4 +1,3 @@
-# todo: テストケース追加時見直し
 N, M = gets.chomp.split(' ').map(&:to_i)
 eats = gets.chomp.split(' ')
 dishes = gets.chomp.split(' ')
