@@ -1,5 +1,5 @@
 # TLE!
-h, w, n = gets.split.map(&:to_i)
+h, w, _ = gets.split.map(&:to_i)
 tar = gets.chomp.split('')
 grids = []
 h.times do
