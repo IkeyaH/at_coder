@@ -1,38 +1,30 @@
-# 一個WAが出るみたい
-# todo: テストケース追加時見直し
-N, K = gets.chomp.split(' ').map(&:to_i)
-med_arr = []
-total = 0
-
+N, K = gets.split.map(&:to_i)
+Medicine = Struct.new(:days, :cnt)
+medicines = []
 N.times do
-  a,b = gets.chomp.split(' ').map(&:to_i)
-  total += b
-  med_arr << [a, b]
+  days, cnt = gets.split.map(&:to_i)
+  medicines << Medicine.new(days, cnt)
 end
 
-sorted_med = med_arr.sort { |a, b| a <=> b }
-dec_total = total
-result = 1
+sum = 0
+medicines.each { |m| sum += m.cnt }
+if sum <= K
+  puts 1
+  exit
+end
 
-count = 0
-sorted_med.each do |s|
-  drink_day = s[0]
-  meds_count = s[1]
+meds_per_day = Hash.new(0)
+medicines.each { |m| meds_per_day[m.days] += m.cnt }
 
-  if drink_day == 1 && total <= K
-    result = 1
+sorted_meds = meds_per_day.sort
+
+ans = 1
+sorted_meds.each do |m|
+  sum -= m[1]
+  if sum <= K
+    ans = m[0] + 1
     break
-  else
-    dec_total -= meds_count
-    if dec_total <= K
-      result = drink_day + 1
-      break
-    end
-  end
-  count += 1
-  if count == N
-    result = sorted_med[-1][0] + 1
   end
 end
 
-puts result
+puts ans
