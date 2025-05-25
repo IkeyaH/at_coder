@@ -16,7 +16,7 @@ S.each_with_index do |s, i|
   sn = s.to_i
   ne = S[i+1].to_i
 
-  if sn >= ne
+  if sn >= ne # % 10をすればよかったかも
     cnt += sn - ne
   else
     cnt += r(ne) + sn
