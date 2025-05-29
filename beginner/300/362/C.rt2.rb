@@ -1,18 +1,19 @@
-# todo: wa!
 N = gets.to_i
 Pair = Struct.new(:left, :right)
 arr = []
 
 min = 0
+max = 0
 ans = []
 N.times do
   l, r = gets.split.map(&:to_i)
   arr << Pair.new(l, r)
   ans << l
   min += l
+  max += r
 end
 
-if min > 0
+if min > 0 || max < 0
   puts 'No'
   exit
 end
