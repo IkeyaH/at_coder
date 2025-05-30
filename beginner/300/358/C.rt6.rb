@@ -1,5 +1,3 @@
-# TODO
-
 def popcount_kernighan(num)
   count = 0
   while num > 0
