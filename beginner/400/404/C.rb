@@ -11,7 +11,7 @@ M.times do
 end
 
 N.times do |i|
-  if arr[i].length != 2 || arr2[i] != 2
+  if arr[i].length != 2
     puts 'No'
     exit
   end
