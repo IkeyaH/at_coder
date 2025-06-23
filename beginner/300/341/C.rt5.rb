@@ -1,3 +1,4 @@
+# 25mくらい
 H, W, N = gets.split.map(&:to_i)
 dire = {
   "L" => -1,
